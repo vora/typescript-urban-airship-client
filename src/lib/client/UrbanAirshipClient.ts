@@ -10,13 +10,11 @@ import { UrbanAirshipClientBuilder } from './UrbanAirshipClientBuilder';
 export class UrbanAirshipClient {
     private appKey: string;
     private appSecret?: string;
-    private bearerToken?: string;
     private requestClient: IRequestClient;
 
     constructor(builder: UrbanAirshipClientBuilder) {
         this.appKey = builder.getAppKey();
         this.appSecret = builder.getAppSecret();
-        this.bearerToken = builder.getBearerToken();
         this.requestClient = new RequestClient(BASE_URL);
     }
 

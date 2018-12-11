@@ -22,7 +22,7 @@ export class RequestClient implements IRequestClient {
             }
             const options = {
                 url: this.baseUrl + clientRequest.getUriPath(),
-                json: JSON.parse(clientRequest.getRequestBody() || '{}'),
+                body: clientRequest.getRequestBody(),
                 headers: reqHeaders,
             };
 
@@ -32,7 +32,7 @@ export class RequestClient implements IRequestClient {
                 if (err || hasError) {
                     reject(err || { statusCode: res.statusCode, error: body });
                 } else {
-                    resolve(new Response(body, undefined as any, res.statusCode));
+                    resolve(new Response(JSON.parse(body), undefined as any, res.statusCode));
                 }
             };
 

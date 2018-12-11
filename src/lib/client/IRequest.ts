@@ -4,7 +4,7 @@ export interface IRequest {
 
     getHttpMethod(): HttpMethod;
 
-    getRequestBody(): string | undefined;
+    getRequestBody(): string;
 
     getRequestHeaders(): IHeaders;
 
