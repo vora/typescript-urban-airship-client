@@ -1,19 +1,18 @@
-import { IHeaders } from './IHeaders';
+import { IHeaders } from './IHeaders'
 
 export interface IRequest {
+  getHttpMethod(): HttpMethod
 
-    getHttpMethod(): HttpMethod;
+  getRequestBody(): string
 
-    getRequestBody(): string;
+  getRequestHeaders(): IHeaders
 
-    getRequestHeaders(): IHeaders;
-
-    getUriPath(): string;
+  getUriPath(): string
 }
 
 export enum HttpMethod {
-    GET,
-    POST,
-    PUT,
-    DELETE,
+  GET,
+  POST,
+  PUT,
+  DELETE,
 }

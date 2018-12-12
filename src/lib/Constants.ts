@@ -1,10 +1,10 @@
-export const CONTENT_TYPE_TEXT_CSV = "text/csv";
-export const CONTENT_TYPE_JSON = "application/json";
-export const CONTENT_TYPE = "ContentType";
-export const CONTENT_ENCODING_GZIP = "gzip";
-export const UA_VERSION_JSON = "application/vnd.urbanairship+json; version=3";
-export const UA_VERSION_CSV = "application/vnd.urbanairship+csv; version=3";
-export const BASE_URL = 'https://go.urbanairship.com';
-export const APP_KEY_HEADER = 'X-UA-Appkey';
-export const ACCEPT_HEADER = 'Accept';
-export const AUTH_HEADER = 'Authorization';
+export const CONTENT_TYPE_TEXT_CSV = 'text/csv'
+export const CONTENT_TYPE_JSON = 'application/json'
+export const CONTENT_TYPE = 'ContentType'
+export const CONTENT_ENCODING_GZIP = 'gzip'
+export const UA_VERSION_JSON = 'application/vnd.urbanairship+json; version=3'
+export const UA_VERSION_CSV = 'application/vnd.urbanairship+csv; version=3'
+export const BASE_URL = 'https://go.urbanairship.com'
+export const APP_KEY_HEADER = 'X-UA-Appkey'
+export const ACCEPT_HEADER = 'Accept'
+export const AUTH_HEADER = 'Authorization'

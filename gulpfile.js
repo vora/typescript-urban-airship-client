@@ -2,7 +2,9 @@ const gulp = require('gulp')
 const gulpTslint = require('gulp-tslint')
 const ts = require('gulp-typescript')
 const tslint = require('tslint')
-const tsProject = ts.createProject('tsconfig.json')
+const tsProject = ts.createProject('tsconfig.json', {
+  declaration: true,
+})
 
 const outputDir = 'dist'
 
