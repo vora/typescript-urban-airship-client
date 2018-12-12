@@ -1,0 +1,1 @@
+This package is under active development and still missing a lot of functionality and testing. The goal is to model the design patterns of the code off of the java library Urban Airship has already provided.
