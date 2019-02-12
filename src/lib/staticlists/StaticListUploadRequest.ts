@@ -15,7 +15,7 @@ export class StaticListUploadRequest implements IRequest {
   }
 
   getRequestBody(): string {
-    return Array.from(this.listContent).reduce(
+    return this.listContent.reduce(
       (old, [key, value]) => {
         return old.concat(`${key},${value}\n`)
       },
