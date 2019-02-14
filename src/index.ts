@@ -7,6 +7,7 @@ export {
 } from './lib/client/UrbanAirshipClientBuilder'
 export { UrbanAirshipClient } from './lib/client/UrbanAirshipClient'
 export { ChannelTagRequest } from './lib/channel/ChannelTagRequest'
+export { NamedUserTagRequest } from './lib/nameduser/NamedUserTagRequest'
 export {
   StaticListStatus,
   StaticListView,
