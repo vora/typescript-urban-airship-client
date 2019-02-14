@@ -8,14 +8,14 @@ import {
 } from '../Constants'
 
 export class StaticListUploadRequest implements IRequest {
-  constructor(public name: string, public listContent: Map<string, string>) {}
+  constructor(public name: string, public listContent: Array<[string, string]>) {}
 
   getHttpMethod(): HttpMethod {
     return HttpMethod.PUT
   }
 
   getRequestBody(): string {
-    return Array.from(this.listContent.entries()).reduce(
+    return this.listContent.reduce(
       (old, [key, value]) => {
         return old.concat(`${key},${value}\n`)
       },
