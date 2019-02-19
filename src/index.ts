@@ -9,6 +9,9 @@ export { UrbanAirshipClient } from './lib/client/UrbanAirshipClient'
 export { ChannelTagRequest } from './lib/channel/ChannelTagRequest'
 export { NamedUserTagRequest } from './lib/nameduser/NamedUserTagRequest'
 export {
+  StaticListLookupRequest,
+} from './lib/staticlists/StaticListLookupRequest'
+export {
   StaticListStatus,
   StaticListView,
 } from './lib/staticlists/model/StaticListView'
