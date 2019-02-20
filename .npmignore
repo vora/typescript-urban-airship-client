@@ -1,2 +1,8 @@
-tsconfig.json
+*.tgz
+.prettierrc
+.vscode
+gulpfile.js
+jest.config.js
 src
+tsconfig.json
+tslint.json
