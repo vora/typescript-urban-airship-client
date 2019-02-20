@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "gulp build-code",
+    "prepack": "npm run clean && npm run build",
+    "build": "tsc",
     "clean": "gulp clean",
     "lint": "gulp tslint",
     "test": "jest",
@@ -35,6 +36,7 @@
     "typescript": "^3.2.2"
   },
   "dependencies": {
+    "del": "^3.0.0",
     "dotenv": "^5.0.1",
     "power-assert": "^1.6.1",
     "request": "^2.88.0"
