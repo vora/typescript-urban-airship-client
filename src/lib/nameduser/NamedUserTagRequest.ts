@@ -10,7 +10,7 @@ import {
 const NAMED_USER_ID_KEY = 'named_user_id'
 
 export class NamedUserTagRequest implements IRequest {
-  audience: { NAMED_USER_ID_KEY: string[] } = {NAMED_USER_ID_KEY: []}
+  audience: { [NAMED_USER_ID_KEY]: string[] } = { [NAMED_USER_ID_KEY]: [] }
   add: { [key: string]: string[] } = {}
 
   addTags(tagGroup: string, tags: string[]) {
