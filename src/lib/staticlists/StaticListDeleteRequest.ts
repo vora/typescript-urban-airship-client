@@ -3,7 +3,7 @@ import { HttpMethod, IRequest } from '../client/IRequest'
 import { ACCEPT_HEADER, UA_VERSION_JSON } from '../Constants'
 
 export class StaticListDeleteRequest implements IRequest {
-  constructor(public id: string) {}
+  constructor(public name: string) {}
 
   getHttpMethod(): HttpMethod {
     return HttpMethod.DELETE
@@ -20,6 +20,6 @@ export class StaticListDeleteRequest implements IRequest {
   }
 
   getUriPath(): string {
-    return `/api/lists/${this.id}`
+    return `/api/lists/${this.name}`
   }
 }
