@@ -1,4 +1,7 @@
 export { StaticListRequest } from './lib/staticlists/StaticListRequest'
+export {
+  StaticListDeleteRequest,
+} from './lib/staticlists/StaticListDeleteRequest'
 export { TemplatePushPayload } from './lib/templates/model/TemplatePushPayload'
 export { TemplatePushRequest } from './lib/templates/TemplatePushRequest'
 export { TemplateSelector } from './lib/templates/model/TemplateSelector'
