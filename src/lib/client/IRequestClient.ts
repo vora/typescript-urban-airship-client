@@ -4,4 +4,5 @@ import { Response } from './Response'
 
 export interface IRequestClient {
   execute<T>(request: IRequest, headers: IHeaders): Promise<Response<T>>
+  getUrl(req?: IRequest): string
 }

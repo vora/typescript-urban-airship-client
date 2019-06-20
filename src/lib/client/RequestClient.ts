@@ -55,4 +55,8 @@ export class RequestClient implements IRequestClient {
       }
     })
   }
+
+  getUrl(req?: IRequest) {
+    return req ? this.baseUrl + req.getUriPath() : this.baseUrl
+  }
 }
