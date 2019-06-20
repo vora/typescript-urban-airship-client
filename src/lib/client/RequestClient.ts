@@ -12,7 +12,10 @@ export class RequestClient implements IRequestClient {
     this.baseUrl = base
   }
 
-  execute<T>(clientRequest: IRequest, headers: IHeaders): Promise<Response<T>> {
+  async execute<T>(
+    clientRequest: IRequest,
+    headers: IHeaders,
+  ): Promise<Response<T>> {
     return new Promise((resolve, reject) => {
       let reqHeaders = headers
       const clientHeaders = clientRequest.getRequestHeaders()
@@ -29,11 +32,9 @@ export class RequestClient implements IRequestClient {
         // tslint:disable-next-line:no-magic-numbers
         const hasError = res.statusCode < 200 || res.statusCode >= 300
         if (err || hasError) {
-          reject(err || { statusCode: res.statusCode, error: body })
+          reject(err || new Response(res.statusCode, JSON.parse(body)))
         } else {
-          resolve(
-            new Response(JSON.parse(body), undefined as any, res.statusCode),
-          )
+          resolve(new Response(res.statusCode, JSON.parse(body)))
         }
       }
 
@@ -54,5 +55,9 @@ export class RequestClient implements IRequestClient {
           throw new Error('Unssupported HTTP method')
       }
     })
+  }
+
+  getUrl(req?: IRequest) {
+    return req ? this.baseUrl + req.getUriPath() : this.baseUrl
   }
 }
