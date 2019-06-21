@@ -18,8 +18,12 @@ export class UrbanAirshipClient {
     this.requestClient = new RequestClient(BASE_URL)
   }
 
-  execute<T>(clientRequest: IRequest): Promise<Response<T>> {
+  async execute<T>(clientRequest: IRequest): Promise<Response<T>> {
     return this.requestClient.execute(clientRequest, this.getHeaders())
+  }
+
+  getUrl(req?: IRequest): string {
+    return this.requestClient.getUrl(req)
   }
 
   private getHeaders(): IHeaders {
