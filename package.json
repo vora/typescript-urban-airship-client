@@ -1,6 +1,6 @@
 {
   "name": "typescript-urban-airship-client",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A client library to help with interacting with the Urban Airship API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
