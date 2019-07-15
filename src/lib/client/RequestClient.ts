@@ -34,7 +34,9 @@ export class RequestClient implements IRequestClient {
         if (err || hasError) {
           reject(err || new Response(res.statusCode, JSON.parse(body)))
         } else {
-          resolve(new Response(res.statusCode, body && JSON.parse(body)))
+          resolve(
+            new Response(res.statusCode, body ? JSON.parse(body) : undefined),
+          )
         }
       }
 
