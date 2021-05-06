@@ -9,12 +9,25 @@ import {
 
 const NAMED_USER_ID_KEY = 'named_user_id'
 
+interface IPayload {
+  audience: Record<typeof NAMED_USER_ID_KEY, string[]>
+  add?: Record<string, string[]>
+  remove?: Record<string, string[]>
+}
+
 export class NamedUserTagRequest implements IRequest {
-  audience: { [NAMED_USER_ID_KEY]: string[] } = { [NAMED_USER_ID_KEY]: [] }
-  add: { [key: string]: string[] } = {}
+  audience: Record<typeof NAMED_USER_ID_KEY, string[]> = {
+    [NAMED_USER_ID_KEY]: [],
+  }
+  add: Record<string, string[]> = {}
+  remove: Record<string, string[]> = {}
 
   addTags(tagGroup: string, tags: string[]) {
     this.addValuesToKey(this.add, tagGroup, ...tags)
+  }
+
+  removeTags(tagGroup: string, tags: string[]) {
+    this.addValuesToKey(this.remove, tagGroup, ...tags)
   }
 
   addNamedUsers(...namedUsers: string[]) {
@@ -26,7 +39,19 @@ export class NamedUserTagRequest implements IRequest {
   }
 
   getRequestBody(): string {
-    return JSON.stringify(this)
+    const payload: IPayload = {
+      audience: this.audience,
+    }
+
+    if (Object.keys(this.add).length) {
+      payload['add'] = this.add
+    }
+
+    if (Object.keys(this.remove).length) {
+      payload['remove'] = this.remove
+    }
+
+    return JSON.stringify(payload)
   }
 
   getRequestHeaders(): IHeaders {
