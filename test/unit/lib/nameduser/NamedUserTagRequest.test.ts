@@ -1,12 +1,25 @@
+import {
+  ACCEPT_HEADER,
+  CONTENT_TYPE,
+  CONTENT_TYPE_JSON,
+  UA_VERSION_JSON,
+} from '../../../../src/lib/Constants'
+import { HttpMethod } from '../../../../src/lib/client/IRequest'
 import { NamedUserTagRequest } from '../../../../src/lib/nameduser/NamedUserTagRequest'
 
-const mockNamedUsers = ['user1', 'user2', 'user3']
-const mockTagGroup = 'fakeTagGroup'
-const mockTags = ['tag1', 'tag2', 'tag3']
+let namedUserTagRequest: NamedUserTagRequest
+let mockNamedUsers: string[]
+let mockTagGroup: string
+let mockTags: string[]
+
+beforeEach(() => {
+  namedUserTagRequest = new NamedUserTagRequest()
+  mockNamedUsers = ['user1', 'user2', 'user3']
+  mockTagGroup = 'fakeTagGroup'
+  mockTags = ['tag1', 'tag2', 'tag3']
+})
 
 it('adds named users to audience', () => {
-  const namedUserTagRequest = new NamedUserTagRequest()
-
   namedUserTagRequest.addNamedUsers(...mockNamedUsers)
 
   expect(namedUserTagRequest.audience).toEqual({
@@ -15,8 +28,6 @@ it('adds named users to audience', () => {
 })
 
 it('adds add tags', () => {
-  const namedUserTagRequest = new NamedUserTagRequest()
-
   namedUserTagRequest.addTags(mockTagGroup, mockTags)
 
   expect(namedUserTagRequest.add).toEqual({
@@ -25,8 +36,6 @@ it('adds add tags', () => {
 })
 
 it('adds remove tags', () => {
-  const namedUserTagRequest = new NamedUserTagRequest()
-
   namedUserTagRequest.removeTags(mockTagGroup, mockTags)
 
   expect(namedUserTagRequest.remove).toEqual({
@@ -34,10 +43,31 @@ it('adds remove tags', () => {
   })
 })
 
+it('http method should be POST', () => {
+  const receivedHttpMethod = namedUserTagRequest.getHttpMethod()
+
+  expect(receivedHttpMethod).toEqual(HttpMethod.POST)
+})
+
+it('uri path is named user tags', () => {
+  const receivedUriPath = namedUserTagRequest.getUriPath()
+
+  expect(receivedUriPath).toEqual('/api/named_users/tags/')
+})
+
+it('should get correct request headers', () => {
+  const receivedRequestHeaders = namedUserTagRequest.getRequestHeaders()
+
+  const expectedRequestHeaders = {
+    [CONTENT_TYPE]: CONTENT_TYPE_JSON,
+    [ACCEPT_HEADER]: UA_VERSION_JSON,
+  }
+
+  expect(receivedRequestHeaders).toEqual(expectedRequestHeaders)
+})
+
 describe('getRequestBody', () => {
   it('gets request body (+named users, +add tags, -remove tags)', () => {
-    const namedUserTagRequest = new NamedUserTagRequest()
-
     namedUserTagRequest.addNamedUsers(...mockNamedUsers)
     namedUserTagRequest.addTags(mockTagGroup, mockTags)
 
@@ -52,8 +82,6 @@ describe('getRequestBody', () => {
   })
 
   it('gets request body (+named users, -add tags, +remove tags)', () => {
-    const namedUserTagRequest = new NamedUserTagRequest()
-
     namedUserTagRequest.addNamedUsers(...mockNamedUsers)
     namedUserTagRequest.removeTags(mockTagGroup, mockTags)
 
@@ -68,8 +96,6 @@ describe('getRequestBody', () => {
   })
 
   it('gets request body (+named users, +add tags, +remove tags)', () => {
-    const namedUserTagRequest = new NamedUserTagRequest()
-
     namedUserTagRequest.addNamedUsers(...mockNamedUsers)
     namedUserTagRequest.addTags(mockTagGroup, mockTags)
     namedUserTagRequest.removeTags(mockTagGroup, mockTags)
