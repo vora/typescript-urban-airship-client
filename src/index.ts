@@ -22,3 +22,5 @@ export {
   StaticListUploadRequest,
 } from './lib/staticlists/StaticListUploadRequest'
 export { Response } from './lib/client/Response'
+export { PushPayload } from './lib/pushes/model/PushPayload'
+export { PushRequest } from './lib/pushes/PushRequest'
