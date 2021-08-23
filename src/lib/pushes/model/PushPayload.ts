@@ -52,7 +52,7 @@ interface IOpen {
 }
 
 interface ILocalization {
-  country: string
+  country?: string
   in_app?: any
   language: string
   message?: any
