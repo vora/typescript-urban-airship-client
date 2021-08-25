@@ -1,7 +1,7 @@
 import { DeviceType } from '../../templates/model/TemplatePushPayload'
 
 export class PushPayload {
-  audience: any
+  audience: object
   campaigns?: any
   feed_references?: any
   localizations?: ILocalization[]
