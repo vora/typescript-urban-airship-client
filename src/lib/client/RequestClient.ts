@@ -1,4 +1,4 @@
-import * as request from 'request'
+import request from 'request'
 
 import { IHeaders } from './IHeaders'
 import { HttpMethod, IRequest } from './IRequest'
@@ -30,13 +30,12 @@ export class RequestClient implements IRequestClient {
 
       const callback = (err: any, res: request.Response, body: any) => {
         // tslint:disable-next-line:no-magic-numbers
-        const hasError = res.statusCode < 200 || res.statusCode >= 300
+        const hasError = res && (res.statusCode < 200 || res.statusCode >= 300)
+
         if (err || hasError) {
-          reject(err || new Response(res.statusCode, JSON.parse(body)))
+          reject(err || new Response(res.statusCode, tryParseBody(body)))
         } else {
-          resolve(
-            new Response(res.statusCode, body ? JSON.parse(body) : undefined),
-          )
+          resolve(new Response(res.statusCode, tryParseBody(body)))
         }
       }
 
@@ -61,5 +60,13 @@ export class RequestClient implements IRequestClient {
 
   getUrl(req?: IRequest) {
     return req ? this.baseUrl + req.getUriPath() : this.baseUrl
+  }
+}
+
+function tryParseBody(body: any) {
+  try {
+    return body ? JSON.parse(body) : undefined
+  } catch (e) {
+    return undefined
   }
 }
