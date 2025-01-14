@@ -5,20 +5,21 @@
     "declaration": true,
     "declarationDir": "dist/",
     "esModuleInterop": true,
-    "target": "es6",
-    "noImplicitAny": true,
+    "target": "es2022",
     "sourceMap": true,
     "outDir": "dist/",
     "baseUrl": ".",
-    "lib": ["es2017"],
+    "lib": ["es2022"],
     "importHelpers": true,
     "paths": {
       "*": ["node_modules/*", "src/types/*"]
     },
+    "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "strictNullChecks": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "strict": true,
+    "strictPropertyInitialization": false
   },
   "include": ["src/**/*", "test/**/*"]
 }
