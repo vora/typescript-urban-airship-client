@@ -71,7 +71,7 @@ const mockResponseOnce = (status: number, body: string) => {
   //global.fetch = jest
   jest
     .spyOn(global, 'fetch')
-    .mockImplementationOnce((_input: string | URL, Request, _init?: RequestInit): Promise<any> => {
+    .mockImplementationOnce((_input: string | URL | Request, _init?: RequestInit): Promise<any> => {
       const ok = status >= 200 && status <= 299 ? true : false
       return Promise.resolve({ status, body, ok })
     })
