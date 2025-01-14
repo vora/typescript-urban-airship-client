@@ -2,7 +2,6 @@
   "name": "@ascendum/airship-client",
   "version": "0.4.0",
   "description": "A client library to help with interacting with the Urban Airship API",
-  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "engines": {
