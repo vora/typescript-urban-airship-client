@@ -29,9 +29,7 @@ export class UrbanAirshipClient {
   private getHeaders(): IHeaders {
     const headers = {
       [APP_KEY_HEADER]: this.appKey,
-      [AUTH_HEADER]: `Basic ${Buffer.from(
-        `${this.appKey}:${this.appSecret}`,
-      ).toString('base64')}`,
+      [AUTH_HEADER]: `Basic ${Buffer.from(`${this.appKey}:${this.appSecret}`).toString('base64')}`,
     }
     return headers
   }

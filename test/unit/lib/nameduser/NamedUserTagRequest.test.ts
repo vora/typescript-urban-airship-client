@@ -1,9 +1,4 @@
-import {
-  ACCEPT_HEADER,
-  CONTENT_TYPE,
-  CONTENT_TYPE_JSON,
-  UA_VERSION_JSON,
-} from '../../../../src/lib/Constants'
+import { ACCEPT_HEADER, CONTENT_TYPE, CONTENT_TYPE_JSON, UA_VERSION_JSON } from '../../../../src/lib/Constants'
 import { HttpMethod } from '../../../../src/lib/client/IRequest'
 import { NamedUserTagRequest } from '../../../../src/lib/nameduser/NamedUserTagRequest'
 

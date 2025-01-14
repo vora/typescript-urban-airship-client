@@ -11,8 +11,8 @@ export interface IRequest {
 }
 
 export enum HttpMethod {
-  GET,
-  POST,
-  PUT,
-  DELETE,
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
 }

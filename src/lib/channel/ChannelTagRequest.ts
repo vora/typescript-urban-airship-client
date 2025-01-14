@@ -1,11 +1,6 @@
 import { IHeaders } from '../client/IHeaders'
 import { HttpMethod, IRequest } from '../client/IRequest'
-import {
-  ACCEPT_HEADER,
-  CONTENT_TYPE,
-  CONTENT_TYPE_JSON,
-  UA_VERSION_JSON,
-} from '../Constants'
+import { ACCEPT_HEADER, CONTENT_TYPE, CONTENT_TYPE_JSON, UA_VERSION_JSON } from '../Constants'
 
 const IOS_CHANNEL_KEY = 'ios_channel'
 const ANDROID_CHANNEL_KEY = 'android_channel'
@@ -45,11 +40,7 @@ export class ChannelTagRequest implements IRequest {
     return '/api/channels/tags/'
   }
 
-  private addChannelToKey(
-    map: { [key: string]: string[] },
-    key: string,
-    ...channels: string[]
-  ) {
+  private addChannelToKey(map: { [key: string]: string[] }, key: string, ...channels: string[]) {
     if (!map[key]) {
       map[key] = []
     }
