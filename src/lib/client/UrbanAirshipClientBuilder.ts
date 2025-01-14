@@ -1,4 +1,4 @@
-import assert from 'power-assert'
+import assert from 'node:assert'
 
 import { UrbanAirshipClient } from './UrbanAirshipClient'
 
@@ -36,10 +36,7 @@ export class UrbanAirshipClientBuilder {
 
   build(): UrbanAirshipClient {
     assert(this.appKey, 'App key must be defined')
-    assert(
-      this.appSecret || this.bearerToken,
-      'App secret or bearer token must be defined',
-    )
+    assert(this.appSecret || this.bearerToken, 'App secret or bearer token must be defined')
     return new UrbanAirshipClient(this)
   }
 }

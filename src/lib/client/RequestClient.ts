@@ -1,7 +1,5 @@
-import request from 'request'
-
 import { IHeaders } from './IHeaders'
-import { HttpMethod, IRequest } from './IRequest'
+import { IRequest } from './IRequest'
 import { IRequestClient } from './IRequestClient'
 import { Response } from './Response'
 
@@ -12,50 +10,33 @@ export class RequestClient implements IRequestClient {
     this.baseUrl = base
   }
 
-  async execute<T>(
-    clientRequest: IRequest,
-    headers: IHeaders,
-  ): Promise<Response<T>> {
-    return new Promise((resolve, reject) => {
-      let reqHeaders = headers
-      const clientHeaders = clientRequest.getRequestHeaders()
-      if (clientHeaders) {
-        reqHeaders = { ...reqHeaders, ...clientHeaders }
-      }
-      const options = {
-        url: this.baseUrl + clientRequest.getUriPath(),
-        body: clientRequest.getRequestBody(),
-        headers: reqHeaders,
-      }
+  async execute<T>(clientRequest: IRequest, headers: IHeaders): Promise<Response<T>> {
+    //const req = new Request(`${this.baseUrl}${clientRequest.getUriPath()}`, {
+    //  method: clientRequest.getHttpMethod(),
+    //  mode: 'no-cors',
+    //  body: JSON.stringify({"audience":{"named_user_id":["IFNJNCJN3WQ"]},"add":{"reservations":["67165d94bc35f31ee44fef00_test"]}}),
+    //  headers: { ...headers, ...clientRequest.getRequestHeaders(),  'content-type': 'application/json' }
+    //})
+    //const chunks = []
+    //for await (let chunk of req.body!) {
+    //  chunks.push(chunk)
+    //}
+    //console.debug(`body: ${Buffer.concat(chunks).toString()}`)
+    //console.debug(req.headers)
+    //const r = await fetch(req)
 
-      const callback = (err: any, res: request.Response, body: any) => {
-        // tslint:disable-next-line:no-magic-numbers
-        const hasError = res && (res.statusCode < 200 || res.statusCode >= 300)
-
-        if (err || hasError) {
-          reject(err || new Response(res.statusCode, tryParseBody(body)))
-        } else {
-          resolve(new Response(res.statusCode, tryParseBody(body)))
-        }
-      }
-
-      switch (clientRequest.getHttpMethod()) {
-        case HttpMethod.GET:
-          request.get(options, callback)
-          break
-        case HttpMethod.POST:
-          request.post(options, callback)
-          break
-        case HttpMethod.DELETE:
-          request.delete(options, callback)
-          break
-        case HttpMethod.PUT:
-          request.put(options, callback)
-          break
-        default:
-          throw new Error('Unssupported HTTP method')
-      }
+    const r = await fetch(`${this.baseUrl}${clientRequest.getUriPath()}`, {
+      method: clientRequest.getHttpMethod(),
+      body: clientRequest.getRequestBody(),
+      headers: { ...headers, ...clientRequest.getRequestHeaders() },
     })
+
+    if (!r.ok) {
+      /* eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors */
+      return Promise.reject(new Response(r.status, tryParseBody(r.body)))
+    } else {
+      return new Response(r.status, tryParseBody(r.body))
+    }
   }
 
   getUrl(req?: IRequest) {
