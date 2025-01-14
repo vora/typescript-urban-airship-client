@@ -1,6 +1,6 @@
 export const CONTENT_TYPE_TEXT_CSV = 'text/csv'
 export const CONTENT_TYPE_JSON = 'application/json'
-export const CONTENT_TYPE = 'ContentType'
+export const CONTENT_TYPE = 'Content-Type'
 export const CONTENT_ENCODING_GZIP = 'gzip'
 export const UA_VERSION_JSON = 'application/vnd.urbanairship+json; version=3'
 export const UA_VERSION_CSV = 'application/vnd.urbanairship+csv; version=3'

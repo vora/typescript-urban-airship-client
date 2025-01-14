@@ -1,26 +1,21 @@
 import { IHeaders } from '../client/IHeaders'
 import { HttpMethod, IRequest } from '../client/IRequest'
-import {
-  ACCEPT_HEADER,
-  CONTENT_TYPE,
-  CONTENT_TYPE_TEXT_CSV,
-  UA_VERSION_JSON,
-} from '../Constants'
+import { ACCEPT_HEADER, CONTENT_TYPE, CONTENT_TYPE_TEXT_CSV, UA_VERSION_JSON } from '../Constants'
 
 export class StaticListUploadRequest implements IRequest {
-  constructor(public name: string, public listContent: Array<[string, string]>) {}
+  constructor(
+    public name: string,
+    public listContent: Array<[string, string]>,
+  ) {}
 
   getHttpMethod(): HttpMethod {
     return HttpMethod.PUT
   }
 
   getRequestBody(): string {
-    return this.listContent.reduce(
-      (old, [key, value]) => {
-        return old.concat(`${key},${value}\n`)
-      },
-      '',
-    )
+    return this.listContent.reduce((old, [key, value]) => {
+      return old.concat(`${key},${value}\n`)
+    }, '')
   }
 
   getRequestHeaders(): IHeaders {

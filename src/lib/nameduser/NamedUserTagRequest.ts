@@ -1,11 +1,6 @@
 import { IHeaders } from '../client/IHeaders'
 import { HttpMethod, IRequest } from '../client/IRequest'
-import {
-  ACCEPT_HEADER,
-  CONTENT_TYPE,
-  CONTENT_TYPE_JSON,
-  UA_VERSION_JSON,
-} from '../Constants'
+import { ACCEPT_HEADER, CONTENT_TYPE, CONTENT_TYPE_JSON, UA_VERSION_JSON } from '../Constants'
 
 const NAMED_USER_ID_KEY = 'named_user_id'
 
@@ -65,11 +60,7 @@ export class NamedUserTagRequest implements IRequest {
     return '/api/named_users/tags/'
   }
 
-  private addValuesToKey(
-    map: { [key: string]: string[] },
-    key: string,
-    ...values: string[]
-  ) {
+  private addValuesToKey(map: { [key: string]: string[] }, key: string, ...values: string[]) {
     if (!map[key]) {
       map[key] = []
     }
