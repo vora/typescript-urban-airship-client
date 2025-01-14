@@ -1,23 +1,20 @@
-const del = require('del')
-const gulp = require('gulp')
-const gulpTslint = require('gulp-tslint')
-const tslint = require('tslint')
+import { deleteAsync } from 'del'
+import gulp from 'gulp'
+import gulpESLintNew from 'gulp-eslint-new'
 
 const outputDir = 'dist'
 
 /**
  * Cleans the output directory.
  */
-gulp.task('clean', () => del([outputDir]))
+gulp.task('clean', () => deleteAsync([outputDir]))
 
 /**
  * run ts-lint
  */
-gulp.task('tslint', () => {
-  const l = tslint.Linter.createProgram('./tsconfig.json')
-
+gulp.task('lint', () => {
   return gulp
     .src(['src/**/*.ts', 'test/**/*.ts', '!**/*.d.ts'], { base: '.' })
-    .pipe(gulpTslint({ formatter: 'verbose', program: l }))
-    .pipe(gulpTslint.report({ allowWarnings: true }))
+    .pipe(gulpESLintNew())
+    .pipe(gulpESLintNew.format())
 })
